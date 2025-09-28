@@ -1,0 +1,29 @@
+# ====================================================================================================
+#   개발 환경 설정 : H2 인 메모리 DB
+# ====================================================================================================
+#
+
+## 스프링 설정
+spring:
+  # 데이터베이스 연결 정보 설정
+  datasource:
+    url: jdbc:h2:mem:test_db;MODE=MySQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+  sql:
+    # SQL 초기화 설정
+    init:
+      encoding: UTF-8
+      # 초기화 모드 : 내장 데이터베이스 사용시 SQL 스크립트 실행
+      mode: EMBEDDED
+      schema-locations: classpath:sql/schema.sql
+  # H2 콘솔 설정
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+
+## 서버 설정
+server:
+  # 내장 톰캣 서버 포트 번호 변경
+  port: 80

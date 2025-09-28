@@ -1,0 +1,42 @@
+# ====================================================================================================
+#   애플리케이션 공통 설정 및 환경 별 프로파일 적용
+# ====================================================================================================
+#
+
+## 스프링 설정
+spring:
+  config:
+    # 외부 설정 파일의 경로 지정
+    import: optional:file:.env[.properties]
+  profiles:
+    # 프로파일 활성화
+    active: dev
+  main:
+    # 애플리케이션 구동시 표시되는 배너 끄기
+    banner-mode: off
+  # 웹 브라우저 새로고침을 통해 변경 이력 반영을 위한 템플릿 경로와 캐싱값 변경
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+    suffix: .html
+    cache: false
+  # 웹 브라우저 새로고침을 통해 변경 이력 반영을 위한 정적 리소스 경로 변경
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+
+## 마이바티스 설정
+mybatis:
+  # 마이바티스 전역 설정 파일 경로 지정
+  config-location: classpath:mybatis/mybatis-config.xml
+  # 매퍼 XML 파일 경로 지정
+  mapper-locations: classpath:mybatis/mapper/*_mapper.xml
+
+## 서버 설정
+server:
+  servlet:
+    # HTTP 요청 및 응답의 UTF-8 인코딩 설정
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
